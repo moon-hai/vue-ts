@@ -1,18 +1,41 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <counting />
+    <user-list
+      :users="users"
+      msg="User List"
+      @clickMe="logEvent" />
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { User } from '../interface/user'
+import Counting from '../components/Counting.vue'
+import UserList from '../components/UserList.vue'
 
-export default {
+@Component({
   name: 'Home',
+
   components: {
-    HelloWorld
+    Counting,
+    UserList
+  }
+})
+export default class Home extends Vue {
+  private users: User[] = [
+    {
+      name: 'John',
+      age: 16
+    },
+    {
+      name: 'Michael',
+      age: 20
+    }
+  ]
+
+  public logEvent () {
+    console.log('dasdsa')
   }
 }
 </script>
