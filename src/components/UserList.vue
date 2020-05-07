@@ -22,16 +22,16 @@ import { User } from '../interface/user'
 
 @Component
 export default class UserList extends Vue {
-  @Prop({ default: 'Welcome' }) readonly msg: string
-  @Prop({ required: true }) readonly users: User
+  @Prop({ default: 'Welcome' }) readonly msg!: string
+  @Prop({ required: true }) readonly users!: User
 
   get title (): string {
     return 'Welcome Title'
   }
 
   @Emit()
-  public clickMe () {
-    console.log('')
+  public clickMe (): number {
+    return 10
   }
 
   public addNum (n1: number, n2: number): void {

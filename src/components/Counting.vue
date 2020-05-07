@@ -1,39 +1,32 @@
 <template>
   <div>
-    <button @click="decerment">-</button>
-    {{ count }}
-    <button @click="increment">+</button>
+    <button @click="incr">-</button>
+    {{ initCount }}
+    <button @click="decr">+</button>
     <br />
     <br />
-
-    <counting-form />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
-import CountingForm from './CountingForm.vue'
+import { Component, Vue } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
+const count = namespace('counter')
 
-@Component({
-  components: {
-    CountingForm
-  }
-})
+@Component
 export default class Counting extends Vue {
+  @count.Getter
+  public initCount!: number
+
+  @count.Action
+  public incr!: () => void
+
+  @count.Action
+  public decr!: () => void
+
   // Hook
   mounted () {
     console.log('mounted')
-  }
-
-  count = 0
-
-  decerment () {
-    this.count--
-  }
-
-  increment () {
-    this.count++
   }
 }
 </script>

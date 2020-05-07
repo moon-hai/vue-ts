@@ -4,7 +4,7 @@
     <user-list
       :users="users"
       msg="User List"
-      @clickMe="logEvent" />
+      @click-me="logEvent($event)" />
   </div>
 </template>
 
@@ -34,8 +34,8 @@ export default class Home extends Vue {
     }
   ]
 
-  public logEvent () {
-    console.log('dasdsa')
+  public logEvent (num: number): void {
+    console.log(num)
   }
 }
 </script>
